@@ -4,6 +4,7 @@ import UMKMTable from '../components/UMKMTable';
 import Footer from '../components/Footer';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { Icon } from "leaflet";
 
 export default function UMKM() {
   const positionCenter = [-7.68787, 110.40278];
@@ -46,6 +47,11 @@ export default function UMKM() {
     },
   ];
 
+  const customIcon = new Icon({
+      iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+      iconSize: [38, 38] // size of the icon
+  });
+  
   return (
     <>
       <Navbar /> <Breadcrumbs link="/umkm" page="UMKM" />
@@ -72,7 +78,7 @@ export default function UMKM() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               {markers.map((marker) => (
-                <Marker key="id" position={marker.geocode}>
+                <Marker key="id" position={marker.geocode} icon={customIcon}>
                   <Popup>{marker.popUp}</Popup>
                 </Marker>
               ))}
