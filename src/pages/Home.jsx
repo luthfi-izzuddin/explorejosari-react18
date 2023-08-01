@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { Icon } from "leaflet";
 import { Tooltip } from '@chakra-ui/react';
 import Navbar from '../components/Navbar.jsx';
 import RejosariBg from '../assets/rejosari-bg.png';
@@ -64,6 +65,11 @@ export default function Home() {
       popUp: 'SD Negeri Rejosari',
     },
   ];
+
+  const customIcon = new Icon({
+      iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+      iconSize: [38, 38] // size of the icon
+  });
 
   return (
     <>
@@ -397,7 +403,7 @@ export default function Home() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               {markers.map((marker) => (
-                <Marker key="id" position={marker.geocode}>
+                <Marker key="id" position={marker.geocode} icon={customIcon}>
                   <Popup>{marker.popUp}</Popup>
                 </Marker>
               ))}
